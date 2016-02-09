@@ -14,13 +14,10 @@ let twitterConsumerSecret = "jb1VdhYAka2XEtLnQZEkdgmGnrdD7sfUNJpVcGm1Uox004CLY8"
 let twitterBaseURL = NSURL(string: "https://api.twitter.com")
 
 class TwitterClient: BDBOAuth1SessionManager {
-    
-    class TwitterClient: BDBOAuth1SessionManager {
-        class var sharedInstance: TwitterClient {
-            struct Static {
-                static let instance = TwitterClient(baseURL: twitterBaseURL, consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
+    class var sharedInstance: TwitterClient {
+        struct Static {
+            static let instance = TwitterClient(baseURL: twitterBaseURL, consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
             }
-            return Static.instance
-        }
+        return Static.instance
     }
 }
