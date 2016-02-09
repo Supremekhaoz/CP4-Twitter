@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.luisliz.twitter</string>
+	<string>com.codepath.$(PRODUCT_NAME:rfc1034identifier)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -24,10 +24,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.luisliz.twitter</string>
+			<string>com.codepath.Twitter</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>cptwitterdemo://oauth</string>
+				<string>cptwitterdemo</string>
 			</array>
 		</dict>
 	</array>
