@@ -17,6 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        if User.currentUser != nil {
+            print("There's a user logged in")
+        }
+        
         return true
     }
 
@@ -43,33 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(app: UIApplication, openURL url: NSURL, options: [String : AnyObject]) -> Bool {
-        TwitterClient.sharedInstance.fetchAccessTokenWithPath("oauth/access_token",
-            method: "POST",
-            requestToken: BDBOAuth1Credential(queryString: url.query),
-            success: {(accessToken: BDBOAuth1Credential!) -> Void in
-                print("got access token")
-                TwitterClient.sharedInstance.requestSerializer.saveAccessToken(accessToken)
-                
-                TwitterClient.sharedInstance.GET("1.1/account/verify_credentials.json", parameters: nil,
-                    success: {(operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
-                        print("user: \(response!)")
-
-                    }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
-                            print("error getting user")
-                    })
-                TwitterClient.sharedInstance.GET("1.1/statuses/home_timeline.json", parameters: nil,
-                    success: { (operation: NSURLSessionDataTask?, response: AnyObject?) -> Void in
-                        print("Home_Timeline: \(response!)")
-                    },
-                    
-                    failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
-                        print("Failed to get the infomation")
-                    })
-                
-        }) {(failure: NSError!) -> Void in
-            print("Failed to receive acces token")
-        }
-
+        TwitterClient.sharedInstance.openURL(url)
         return true
     }
 
