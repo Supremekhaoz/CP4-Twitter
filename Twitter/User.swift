@@ -28,23 +28,63 @@ class User: NSObject {
     }
     
     class var currentUser: User? {
+        /*
+        // data returned from the network response will typically be of type
+        // NSData (which is a buffer of bytes)
+        let responseData: NSData = // ... some value retrieved from the network response ...
+        
+        // Wrap our code in a do catch as our code might throw an exception which we need to handle
+        do {
+            // Start by converting the NSData to a dictionary - a dictionary for the entire response
+            if let responseDictionary = try NSJSONSerialization.JSONObjectWithData(responseData,
+                options:NSJSONReadingOptions(rawValue:0)) as? [String:AnyObject] {
+                    
+                    // Dip inside the response to find the "movies" key and get the array of movies
+                    if let movies = responseDictionary["movies"] as? [AnyObject] {
+                        
+                        // Get each movie dictionary from the array of movies
+                        for movie in movies {
+                            
+                            // Use the movie "title" key and "rating" key to get their values
+                            if let title = movie["title"] as? String {
+                                if let rating = movie["rating"] as? Double {
+                                    print("Title:\(title), rating:\(rating)")
+                                }
+                            }
+                        }
+                    }
+            }
+        } catch {
+            print("Error parsing JSON")
+        }*/
+        
         get {
             if _currentUser == nil {
                 let data = NSUserDefaults.standardUserDefaults().objectForKey(currentUserKey) as? NSData
         
                 if data != nil {
-                    let dictionary = NSJSONSerialization.JSONObjectWithData(data!, options: nil) as! NSDictionary
-                    _currentUser = User(dictionary: dictionary)
+                    do {
+                        if let dictionary = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions(rawValue:0)) as? NSDictionary {
+                            _currentUser = User(dictionary: dictionary)
+                        }
+                    } catch {
+                        print("Error parsing JSON")
+                    }
+                }
             }
-        }
-
             return _currentUser
         }
+        
         set(user) {
             _currentUser = user
             if _currentUser != nil {
-                let data = NSJSONSerialization.dataWithJSONObject(user!.dictionary, options: nil)
-                NSUserDefaults.standardUserDefaults().setObject(data, forKey: currentUserKey)
+                do {
+                    if let data = try NSJSONSerialization.JSONObjectWithData(user?.dictionary, options: NSJSONReadingOptions(rawValue:0)) as? NSDictionary	 {
+                        NSUserDefaults.standardUserDefaults().setObject(data, forKey: currentUserKey)
+                    }
+                } catch {
+                    print("Error with JSON")
+                }
             } else {
                 NSUserDefaults.standardUserDefaults().setObject(nil, forKey: currentUserKey)
             }
