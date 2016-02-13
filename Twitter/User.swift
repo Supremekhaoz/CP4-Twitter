@@ -78,8 +78,10 @@ class User: NSObject {
         set(user) {
             _currentUser = user
             if _currentUser != nil {
+                //convert nsdictionary into nsdata
+                let data2 : NSData = NSKeyedArchiver.archivedDataWithRootObject(user!.dictionary)
                 do {
-                    if let data = try NSJSONSerialization.JSONObjectWithData(user?.dictionary, options: NSJSONReadingOptions(rawValue:0)) as? NSDictionary	 {
+                    if let data = try NSJSONSerialization.JSONObjectWithData(data2, options: NSJSONReadingOptions(rawValue:0)) as? NSDictionary	 {
                         NSUserDefaults.standardUserDefaults().setObject(data, forKey: currentUserKey)
                     }
                 } catch {
