@@ -16,15 +16,14 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: {
-            (tweets, error) -> () in
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        
+        TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> () in
                 self.tweets = tweets
-                self.tableView.delegate = self
-                self.tableView.dataSource = self
                 self.tableView.reloadData()
-            })
-        
-        
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,18 +36,19 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        /*if tweets != nil {
-            return tweets.count
+        if tweets != nil {
+            return tweets!.count
         } else {
             return 0
-        }*/
-        return 2
+        }
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         
-        cell.usernameLabel.text = "90"
+        cell.tweet = tweets![indexPath.row]
+
+        cell.tweetLabel.sizeToFit()
         
         return cell
     }

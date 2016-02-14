@@ -13,6 +13,20 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var tweetLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var handleLabel: UILabel!
+    @IBOutlet weak var timestampLabel: UILabel!
+    
+    var tweet: Tweet! {
+        didSet {
+            usernameLabel.text = (tweet.user?.name)!
+            tweetLabel.text = tweet.text
+            handleLabel.text = "@\((tweet.user?.screenname)!)"
+            timestampLabel.text = "\(tweet.createdAt!)"
+            
+            let imageUrl = tweet.user?.profileImageUrl!
+            profileImageView.setImageWithURL(NSURL(string: imageUrl!)!)
+        }
+    }
    
     override func awakeFromNib() {
         super.awakeFromNib()
