@@ -33,12 +33,12 @@ class User: NSObject {
                 let data = NSUserDefaults.standardUserDefaults().objectForKey(currentUserKey) as? NSData
         
                 if data != nil {
+                    let dictionary: NSDictionary?
                     do {
-                        if let dictionary = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions(rawValue:0)) as? NSDictionary {
-                            _currentUser = User(dictionary: dictionary)
-                        }
+                        try dictionary = NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers) as? NSDictionary
+                        _currentUser = User(dictionary: dictionary!)
                     } catch {
-                        print("Error parsing JSON")
+                        print(error)
                     }
                 }
             }
@@ -47,19 +47,18 @@ class User: NSObject {
         
         set(user) {
             _currentUser = user
-            
-            if _currentUser != nil {
-                //convert nsdictionary into nsdata
-                let data2 : NSData = NSKeyedArchiver.archivedDataWithRootObject(user!.dictionary)
+            if let _ = _currentUser {
+                var data: NSData?
+                
                 do {
-                    let data = try NSJSONSerialization.JSONObjectWithData(data2, options: NSJSONReadingOptions(rawValue:0))
+                    try data = NSJSONSerialization.dataWithJSONObject(user!.dictionary, options: .PrettyPrinted)
                     NSUserDefaults.standardUserDefaults().setObject(data, forKey: currentUserKey)
                 } catch {
-                    print("Error in set user: \(error)")
+                    print(error)
                 }
+            
             } else {
                 NSUserDefaults.standardUserDefaults().setObject(nil, forKey: currentUserKey)
-                
             }
             NSUserDefaults.standardUserDefaults().synchronize()
         }
