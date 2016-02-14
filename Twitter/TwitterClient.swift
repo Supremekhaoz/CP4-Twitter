@@ -37,6 +37,26 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
     
+    func homeTimelineWithParams(params: NSDictionary?, completion: (tweet: [Tweet]?, error: NSError?)-> ()) {
+        
+        GET("1.1/statuses/home_timeline.json", parameters: params,
+            success: { (operation: NSURLSessionDataTask?, response: AnyObject?) -> Void in
+                let tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
+                /*for tweet in tweets {
+                    print("tweet: \((tweet.user?.name!)!)")
+                }*/
+                completion(tweet: tweets, error: nil)
+            },
+            
+            failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+                print("Failed to get the infomation")
+                
+                completion(tweet: nil, error: error)
+                
+                self.loginCompletion!(user: nil, error: error)
+        })
+        
+    }
     func openURL(url: NSURL) {
         fetchAccessTokenWithPath("oauth/access_token",
             method: "POST",
@@ -48,7 +68,7 @@ class TwitterClient: BDBOAuth1SessionManager {
                 TwitterClient.sharedInstance.GET("1.1/account/verify_credentials.json", parameters: nil,
                     success: {(operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
                         let user = User(dictionary: response as! NSDictionary)
-
+                        
                         User.currentUser = user
                         
                         print("\(user.name!)")
@@ -57,20 +77,6 @@ class TwitterClient: BDBOAuth1SessionManager {
                         print("error getting user")
                         self.loginCompletion!(user: nil, error: error)
                 })
-                TwitterClient.sharedInstance.GET("1.1/statuses/home_timeline.json", parameters: nil,
-                    success: { (operation: NSURLSessionDataTask?, response: AnyObject?) -> Void in
-                        var tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
-                        
-                        for tweet in tweets {
-                            print("text: \(tweet.text), created: \(tweet.createdAt)")
-                        }
-                    },
-                    
-                    failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
-                        print("Failed to get the infomation")
-                        self.loginCompletion!(user: nil, error: error)
-                })
-                
             }) {(error: NSError!) -> Void in
                 print("Failed to receive acces token")
                 self.loginCompletion!(user: nil, error: error)

@@ -32,7 +32,7 @@ class User: NSObject {
     func logout() {
         User.currentUser = nil
         TwitterClient.sharedInstance.requestSerializer.removeAccessToken()
-        NSNotificationCenter.defaultCenter().postNotification(userDidLogoutNotification)
+        NSNotificationCenter.defaultCenter().postNotificationName(userDidLogoutNotification, object: nil)
     }
     
     class var currentUser: User? {
@@ -48,6 +48,8 @@ class User: NSObject {
                     } catch {
                         print(error)
                     }
+                } else {
+                    print("current user data is empty")
                 }
             }
             return _currentUser
