@@ -32,13 +32,23 @@
             </objects>
             <point key="canvasLocation" x="214.40000000000001" y="316.65999999999997"/>
         </scene>
-        <!--View Controller-->
+        <!--Tweets View Controller-->
         <scene sceneID="Nju-fA-tZm">
             <objects>
-                <viewController id="51c-iR-P16" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TweetsViewController" id="51c-iR-P16" customClass="TweetsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="prc-KW-v4m">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bQZ-3Z-Gvm">
+                                <rect key="frame" x="134" y="238" width="52" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout "/>
+                                <connections>
+                                    <action selector="onLogout:" destination="51c-iR-P16" eventType="touchUpInside" id="9bs-i5-ctr"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>

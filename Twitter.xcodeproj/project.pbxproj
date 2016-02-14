@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A067EC9B1C700988009E192D /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A067EC9A1C700988009E192D /* TweetsViewController.swift */; };
 		A0941F641C6AE0F100C5C24C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0941F631C6AE0F100C5C24C /* User.swift */; };
 		A0941F661C6AE10000C5C24C /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0941F651C6AE10000C5C24C /* Tweet.swift */; };
 		A0DA55BE1C699E7200E8F269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DA55BD1C699E7200E8F269 /* AppDelegate.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		049840A9FA620D34175D1BC8 /* Pods_Twitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A067EC9A1C700988009E192D /* TweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
 		A0941F631C6AE0F100C5C24C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A0941F651C6AE10000C5C24C /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		A0DA55BA1C699E7200E8F269 /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,6 +85,7 @@
 				A0941F621C6AE0D900C5C24C /* Models */,
 				A0DA55D21C69A05E00E8F269 /* API */,
 				A0DA55BF1C699E7200E8F269 /* ViewController.swift */,
+				A067EC9A1C700988009E192D /* TweetsViewController.swift */,
 				A0DA55C11C699E7200E8F269 /* Main.storyboard */,
 				A0DA55D01C69A00700E8F269 /* twitter.m */,
 				A0DA55C41C699E7200E8F269 /* Assets.xcassets */,
@@ -245,6 +248,7 @@
 				A0DA55C01C699E7200E8F269 /* ViewController.swift in Sources */,
 				A0DA55BE1C699E7200E8F269 /* AppDelegate.swift in Sources */,
 				A0941F661C6AE10000C5C24C /* Tweet.swift in Sources */,
+				A067EC9B1C700988009E192D /* TweetsViewController.swift in Sources */,
 				A0941F641C6AE0F100C5C24C /* User.swift in Sources */,
 				A0DA55D11C69A00700E8F269 /* twitter.m in Sources */,
 			);

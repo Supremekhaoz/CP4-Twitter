@@ -13,18 +13,25 @@ import BDBOAuth1Manager
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var storyboard = UIStoryboard(name: "Main", bundle: nil)
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "UserDidLogout", name: userDidLogoutNotification, object: nil)
         if User.currentUser != nil {
             print("There's a user logged in")
+            let vc = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController")
+            
+            window?.rootViewController = vc
         }
         
         return true
     }
-
+    
+    func UserDidLogout() {
+        let vc = storyboard.instantiateViewControllerWithIdentifier()
+        window?.rootViewController = vc
+    }
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
