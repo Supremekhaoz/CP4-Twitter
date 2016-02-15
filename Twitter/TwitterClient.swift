@@ -42,7 +42,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             success: { (operation: NSURLSessionDataTask?, response: AnyObject?) -> Void in
                 var tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
                 for tweet in tweets {
-                    print("tweet: \((tweet.user?.name!)!)")
+                    print("tweet: \(tweet.user?.profileImageUrl!)")
                 }
                 completion(tweet: tweets, error: nil)
             },
