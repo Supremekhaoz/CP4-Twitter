@@ -37,6 +37,43 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
     
+    func retweet(id: Int?, completion: (retweet: [Retweet]?, error: NSError?)-> ()) {
+        POST("1.1/statuses/retweet/:id.json", parameters: id,
+            success: { (operation: NSURLSessionDataTask?, response: AnyObject?) -> Void in
+                var retweets = Retweet.tweetsWithArray(response as! [NSDictionary])
+                /*for retweet in retweets {
+                    print("retweet: \(tweet.")
+                }*/
+                completion(retweet: retweets, error: nil)
+            },
+            
+            failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+                print("Failed to get the infomation")
+                
+                completion(retweet: nil, error: error)
+        })
+        
+    }
+    
+    func favorite(id: Int?,  completion: (favorite: [Favorite]?, error: NSError?)-> ()) {
+        POST("1.1/favorites/create.json", parameters: id,
+            success: { (operation: NSURLSessionDataTask?, response: AnyObject?) -> Void in
+                var favorites = Favorite.tweetsWithArray(response as! [NSDictionary])
+                /*for favorite in favorites {
+                    print("tweet: \(favorite.user?.profileImageUrl!)")
+                }*/
+                completion(favorite: favorites, error: nil)
+            },
+            
+            failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+                print("Failed to get the infomation")
+                
+                completion(favorite: nil, error: error)
+                
+                self.loginCompletion!(user: nil, error: error)
+        })
+    }
+    
     func homeTimelineWithParams(params: NSDictionary?, completion: (tweet: [Tweet]?, error: NSError?)-> ()) {
         GET("1.1/statuses/home_timeline.json", parameters: params,
             success: { (operation: NSURLSessionDataTask?, response: AnyObject?) -> Void in
@@ -56,6 +93,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
         
     }
+    
     func openURL(url: NSURL) {
         fetchAccessTokenWithPath("oauth/access_token",
             method: "POST",
