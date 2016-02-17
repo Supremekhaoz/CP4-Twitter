@@ -9,21 +9,23 @@
 import UIKit
 
 class Tweet: NSObject {
+    var tweetId: Int?
     var user: User?
     var text: String?
     var createdAtString: String?
     var createdAt: NSDate?
     var screenname: String?
-    var favorites: Favorite?
-    var retweets: Retweet?
-    
+    var retweetCount: String?
+    var favoriteCount: String?
+
     init(dictionary: NSDictionary) {
+        tweetId = (dictionary["id"] as! Int?)!
         user = User(dictionary: (dictionary["user"] as? NSDictionary)!)
         text = dictionary["text"] as? String
         createdAtString = dictionary["created_at"] as? String
         screenname = dictionary["screenname"] as? String
-        //favorites = Retweet(dictionary: <#T##NSDictionary#>)
-        //retweets = Favorite(dictionary: <#T##NSDictionary#>)
+        retweetCount = "\((dictionary["retweet_count"])!)"
+        favoriteCount = "\(dictionary["favourites_count"])"
         
         let formatter = NSDateFormatter()
         formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"

@@ -15,6 +15,8 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var handleLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var favoriteLabel: UILabel!
+    @IBOutlet weak var retweetLabel: UILabel!
     
     var tweet: Tweet! {
         didSet {
@@ -22,15 +24,20 @@ class TweetCell: UITableViewCell {
             tweetLabel.text = tweet.text
             handleLabel.text = "@\((tweet.user?.screenname)!)"
             timestampLabel.text = "\(tweet.createdAt!)"
+            favoriteLabel.text = tweet.favoriteCount!
+            retweetLabel.text = tweet.retweetCount!
             
             let imageUrl = tweet.user?.profileImageUrl!
             profileImageView.setImageWithURL(NSURL(string: imageUrl!)!)
         }
     }
+    
+
+    
    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        profileImageView.userInteractionEnabled = true;
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -39,4 +46,10 @@ class TweetCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func retweet(sender: AnyObject) {
+        print("rt")
+    }
+    @IBAction func favorite(sender: AnyObject) {
+        print("fav")
+    }
 }

@@ -11,6 +11,8 @@ import UIKit
 class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var tweets: [Tweet]?
+    var retweets: [Retweet]?
+    var favorites: [Favorite]?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -26,6 +28,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 self.tweets = tweets
                 self.tableView.reloadData()
         }
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,7 +57,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         return cell
     }
-    
     /*
     // MARK: - Navigation
 
@@ -62,7 +64,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }
-    */
+    }*/
 
 }

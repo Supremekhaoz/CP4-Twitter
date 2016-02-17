@@ -30,10 +30,12 @@ class ViewController: UIViewController {
                 //error
             }
         }
-        
         TwitterClient.sharedInstance.requestSerializer.removeAccessToken()
-        
     }
+    
+    
+    
+    
 
 }
 
