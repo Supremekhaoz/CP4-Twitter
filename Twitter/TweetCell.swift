@@ -31,9 +31,6 @@ class TweetCell: UITableViewCell {
             profileImageView.setImageWithURL(NSURL(string: imageUrl!)!)
         }
     }
-    
-
-    
    
     override func awakeFromNib() {
         super.awakeFromNib()
