@@ -34,11 +34,20 @@ class TweetViewController: UIViewController {
         
         let imageUrl = tweet.user?.profileImageUrl!
         avatarView.setImageWithURL(NSURL(string: imageUrl!)!)
+        
+        let imageView = avatarView
+        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
+        imageView.userInteractionEnabled = true
+        imageView.addGestureRecognizer(tapGestureRecognizer)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func imageTapped(img: AnyObject) {
+        print("pressed in tweet")
     }
     
     /*

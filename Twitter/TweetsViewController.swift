@@ -27,8 +27,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> () in
                 self.tweets = tweets
                 self.tableView.reloadData()
-        }
-    
+        }    
     }
 
     override func didReceiveMemoryWarning() {
