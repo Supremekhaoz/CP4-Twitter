@@ -63,6 +63,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             self.tableView.reloadData()
         }
     }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tweets != nil {
             return tweets!.count
@@ -75,7 +76,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         
         cell.tweet = tweets![indexPath.row]
-
         cell.tweetLabel.sizeToFit()
         
         return cell
@@ -105,7 +105,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             
             composeController.username = (User.currentUser?.name)!
             composeController.screenname = (User.currentUser?.screenname)!
-            composeController.url = (User.currentUser?.name)!
+            composeController.url = (User.currentUser?.profileImageUrl)!
             
         }
     }

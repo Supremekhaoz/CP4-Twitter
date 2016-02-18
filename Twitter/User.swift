@@ -14,7 +14,7 @@ let userDidLoginNotification = "userDidLoginNotification"
 let userDidLogoutNotification = "userDidLogoutNotification"
 
 class User: NSObject {
-    var user_id: Int?
+    var user_id: String?
     var name: String?
     var screenname: String?
     var profileImageUrl: String?
@@ -24,7 +24,7 @@ class User: NSObject {
     init(dictionary: NSDictionary) {
         self.dictionary = dictionary
         
-        user_id = (dictionary["id"] as? Int?)!
+        user_id = (dictionary["id_str"] as? String?)!
         name = dictionary["name"] as? String
         screenname = dictionary["screen_name"] as? String
         profileImageUrl = dictionary["profile_image_url"] as? String

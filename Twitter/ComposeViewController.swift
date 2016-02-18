@@ -27,7 +27,7 @@ class ComposeViewController: UIViewController {
         
         let imageUrl = url
         profileImageView.setImageWithURL(NSURL(string: imageUrl!)!)
-        
+        textView.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {

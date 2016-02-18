@@ -43,6 +43,13 @@ class TweetViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func favorite(sender: AnyObject) {
+        print("another fav")
+    }
+    
+    @IBAction func retweet(sender: AnyObject) {
+        print("another rt")
+    }
     
     // MARK: - Navigation
 
