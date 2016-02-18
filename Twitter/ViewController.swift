@@ -33,7 +33,9 @@ class ViewController: UIViewController {
         TwitterClient.sharedInstance.requestSerializer.removeAccessToken()
     }
     
-    
+    func imageTapped(img: AnyObject) {
+        print("image tapped")
+    }
     
     
 
