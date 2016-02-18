@@ -59,7 +59,7 @@ Describe any challenges encountered while building the app.
 
 # Project 5 - *Twitter*
 
-Time spent: **8.5** hours spent in total
+Time spent: **11** hours spent in total
 
 ## User Stories
 
@@ -69,7 +69,7 @@ The following **required** functionality is completed:
 - [ ] Profile page:
    - [ ] Contains the user header view
    - [ ] Contains a section with the users basic stats: # tweets, # following, # followers
-- [ ] Home Timeline: Tapping on a user image should bring up that user's profile page
+- [x] Home Timeline: Tapping on a user image should bring up that user's profile page
 - [ ] Compose Page: User can compose a new tweet by tapping on a compose button.
 
 The following **optional** features are implemented:
