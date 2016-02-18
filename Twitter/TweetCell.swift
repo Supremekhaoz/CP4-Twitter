@@ -23,6 +23,8 @@ class TweetCell: UITableViewCell {
     
     @IBOutlet weak var profileImageButton: UIButton!
     
+    var user_id: String!
+    
     var tweet: Tweet! {
         didSet {
             usernameLabel.text = (tweet.user?.name)!
@@ -55,12 +57,13 @@ class TweetCell: UITableViewCell {
     }
     
     @IBAction func retweet(sender: AnyObject) {
-        print("1.1/statuses/retweet/\((tweet.user?.user_id!)!).json")
-        TwitterClient.sharedInstance.retweet((tweet.user?.user_id!)!)
+        TwitterClient.sharedInstance.retweet(user_id)
+        retweetButton.setImage(UIImage(named: "retweet-action-on-green"), forState: UIControlState.Normal)
     }
     
     @IBAction func favorite(sender: AnyObject) {
-        TwitterClient.sharedInstance.favorite((tweet.user?.user_id!)!)
+        TwitterClient.sharedInstance.favorite(user_id)
+        favButton.setImage(UIImage(named: "like-action-on-red"), forState: UIControlState.Normal)
     }
     
 }

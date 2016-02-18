@@ -740,8 +740,10 @@
                     <navigationItem key="navigationItem" id="Jo5-ME-7Us"/>
                     <connections>
                         <outlet property="avatarView" destination="qmX-5N-PtY" id="8xz-4j-2rr"/>
+                        <outlet property="favButton" destination="diq-hM-DEN" id="20H-fP-RHy"/>
                         <outlet property="favoritesLabel" destination="DPW-L6-Sy6" id="weW-nh-Ohl"/>
                         <outlet property="handleLabel" destination="E5g-hb-lwg" id="hQY-1G-vOc"/>
+                        <outlet property="retweetButton" destination="ePG-vU-KGR" id="OMT-LJ-NLc"/>
                         <outlet property="retweetLabel" destination="RVr-N6-MUs" id="dJS-Ad-R4j"/>
                         <outlet property="tweetLabel" destination="5OH-Pk-EKQ" id="2Bf-oM-iYk"/>
                         <outlet property="usernameLabel" destination="JGD-jZ-rKm" id="yV8-ng-7Zv"/>
@@ -781,6 +783,6 @@
         <image name="retweet-action_default" width="75" height="72"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RmN-UT-uL6"/>
+        <segue reference="MLl-5s-zLL"/>
     </inferredMetricsTieBreakers>
 </document>

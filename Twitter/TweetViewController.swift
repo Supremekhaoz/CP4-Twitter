@@ -11,6 +11,7 @@ import UIKit
 class TweetViewController: UIViewController {
     var tweets: [Tweet]?
     var index: Int?
+    var user_id: String!
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var handleLabel: UILabel!
@@ -18,6 +19,9 @@ class TweetViewController: UIViewController {
     @IBOutlet weak var retweetLabel: UILabel!
     @IBOutlet weak var favoritesLabel: UILabel!
     @IBOutlet weak var avatarView: UIImageView!
+    
+    @IBOutlet weak var favButton: UIButton!
+    @IBOutlet weak var retweetButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +33,7 @@ class TweetViewController: UIViewController {
         tweetLabel.text = tweet.text
         retweetLabel.text = tweet.retweetCount
         favoritesLabel.text = tweet.favoriteCount
+        user_id = tweet.user?.user_id
         
         let imageUrl = tweet.user?.profileImageUrl!
         avatarView.setImageWithURL(NSURL(string: imageUrl!)!)
@@ -45,10 +50,15 @@ class TweetViewController: UIViewController {
     
     @IBAction func favorite(sender: AnyObject) {
         print("another fav")
+        TwitterClient.sharedInstance.favorite(user_id)
+        favButton.setImage(UIImage(named: "like-action-on-red"), forState: UIControlState.Normal)
+        
     }
     
     @IBAction func retweet(sender: AnyObject) {
         print("another rt")
+        TwitterClient.sharedInstance.retweet(user_id)
+        retweetButton.setImage(UIImage(named: "retweet-action-on-green"), forState: UIControlState.Normal)
     }
     
     // MARK: - Navigation
