@@ -15,6 +15,7 @@
 		A089BED21C743D050037E8CC /* TweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A089BED11C743D050037E8CC /* TweetViewController.swift */; };
 		A0941F641C6AE0F100C5C24C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0941F631C6AE0F100C5C24C /* User.swift */; };
 		A0941F661C6AE10000C5C24C /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0941F651C6AE10000C5C24C /* Tweet.swift */; };
+		A0CE6A121C75612400FE544B /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0CE6A111C75612400FE544B /* ComposeViewController.swift */; };
 		A0DA55BE1C699E7200E8F269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DA55BD1C699E7200E8F269 /* AppDelegate.swift */; };
 		A0DA55C01C699E7200E8F269 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DA55BF1C699E7200E8F269 /* ViewController.swift */; };
 		A0DA55C31C699E7200E8F269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0DA55C11C699E7200E8F269 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 		A089BED11C743D050037E8CC /* TweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetViewController.swift; sourceTree = "<group>"; };
 		A0941F631C6AE0F100C5C24C /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A0941F651C6AE10000C5C24C /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		A0CE6A111C75612400FE544B /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		A0DA55BA1C699E7200E8F269 /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0DA55BD1C699E7200E8F269 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0DA55BF1C699E7200E8F269 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				A067EC9A1C700988009E192D /* TweetsViewController.swift */,
 				A089BED11C743D050037E8CC /* TweetViewController.swift */,
 				A05801C01C7521EA0029504A /* ProfileViewController.swift */,
+				A0CE6A111C75612400FE544B /* ComposeViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				A0DA55BE1C699E7200E8F269 /* AppDelegate.swift in Sources */,
 				A0474EEB1C7040EF006E6C95 /* TweetCell.swift in Sources */,
 				A0941F661C6AE10000C5C24C /* Tweet.swift in Sources */,
+				A0CE6A121C75612400FE544B /* ComposeViewController.swift in Sources */,
 				A067EC9B1C700988009E192D /* TweetsViewController.swift in Sources */,
 				A05801C11C7521EA0029504A /* ProfileViewController.swift in Sources */,
 				A089BECD1C74393C0037E8CC /* Retweet.swift in Sources */,

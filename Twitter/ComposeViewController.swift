@@ -1,5 +1,5 @@
 //
-//  TweetViewController.swift
+//  ComposeViewController.swift
 //  Twitter
 //
 //  Created by Luis Liz on 2/17/16.
@@ -8,42 +8,41 @@
 
 import UIKit
 
-class TweetViewController: UIViewController {
-    var tweets: [Tweet]?
-    var index: Int?
+class ComposeViewController: UIViewController {
+    var username: String?
+    var screenname: String?
+    var url: String?
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var handleLabel: UILabel!
-    @IBOutlet weak var tweetLabel: UILabel!
-    @IBOutlet weak var retweetLabel: UILabel!
-    @IBOutlet weak var favoritesLabel: UILabel!
-    @IBOutlet weak var avatarView: UIImageView!
+    @IBOutlet weak var chatCountLabel: UILabel!
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var textView: UITextView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let tweet = tweets![index!]
         
-        usernameLabel.text = (tweet.user?.name)!
-        handleLabel.text = "@\((tweet.user?.screenname)!)"
-        tweetLabel.text = tweet.text
-        retweetLabel.text = tweet.retweetCount
-        favoritesLabel.text = tweet.favoriteCount
+        usernameLabel.text = username
+        handleLabel.text = screenname
         
-        let imageUrl = tweet.user?.profileImageUrl!
-        avatarView.setImageWithURL(NSURL(string: imageUrl!)!)
+        let imageUrl = url
+        profileImageView.setImageWithURL(NSURL(string: imageUrl!)!)
         
-        let imageView = avatarView
-        imageView.userInteractionEnabled = true
-
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    
+    @IBAction func onCancel(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    @IBAction func onTweet(sender: AnyObject) {
+        
+    }
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -51,6 +50,6 @@ class TweetViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    
+    */
 
 }

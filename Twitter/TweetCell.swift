@@ -35,20 +35,14 @@ class TweetCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        let imageView = profileImageView
-        let tapGestureRecognizer = UITapGestureRecognizer(target:self, action:Selector("imageTapped:"))
-        imageView.userInteractionEnabled = true
-        imageView.addGestureRecognizer(tapGestureRecognizer)
+        profileImageView.userInteractionEnabled = true
+    
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
-    }
-
-    func imageTapped(img: AnyObject) {
-        print("pressed in cell")
     }
     
     @IBAction func retweet(sender: AnyObject) {

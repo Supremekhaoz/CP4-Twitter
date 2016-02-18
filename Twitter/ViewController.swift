@@ -34,10 +34,7 @@ class ViewController: UIViewController {
     }
     
     func imageTapped(img: AnyObject) {
-        print("image tapped")
+        //App Delegate -> ShowProfile()
     }
-    
-    
-
 }
 

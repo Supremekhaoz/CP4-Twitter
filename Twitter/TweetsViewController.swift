@@ -14,6 +14,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     var retweets: [Retweet]?
     var favorites: [Favorite]?
     
+    var refreshControl: UIRefreshControl!
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -24,10 +26,21 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 120
         
-        TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> () in
-                self.tweets = tweets
-                self.tableView.reloadData()
-        }    
+        getTweets()
+        
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refreshControl, atIndex: 0)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
+        imageView.contentMode = .ScaleAspectFit
+        
+        let image = UIImage(named: "Twitter_logo_blue_32")
+        imageView.image = image
+        
+        navigationItem.titleView = imageView
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,6 +52,17 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         User.currentUser?.logout()
     }
     
+    func onRefresh() {
+        getTweets()
+        self.refreshControl.endRefreshing()
+    }
+    
+    func getTweets() {
+        TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> () in
+            self.tweets = tweets
+            self.tableView.reloadData()
+        }
+    }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tweets != nil {
             return tweets!.count
@@ -74,6 +98,15 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 
                 tableView.deselectRowAtIndexPath(indexPath, animated: true)
             }
+        }
+        
+        if segue.identifier == "composeSegue" {
+            let composeController = segue.destinationViewController as! ComposeViewController
+            
+            composeController.username = (User.currentUser?.name)!
+            composeController.screenname = (User.currentUser?.screenname)!
+            composeController.url = (User.currentUser?.name)!
+            
         }
     }
 
