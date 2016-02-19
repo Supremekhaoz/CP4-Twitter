@@ -8,7 +8,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginSegue" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ryo-TH-nJp"/>
                         <viewControllerLayoutGuide type="bottom" id="dLA-6J-vw7"/>
@@ -17,11 +17,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VN8-FE-mF1">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="loginSegue" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VN8-FE-mF1">
                                 <rect key="frame" x="95" y="269" width="131" height="30"/>
                                 <state key="normal" title="Sign in with Twitter"/>
                                 <connections>
                                     <action selector="onLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Trv-bk-VV2"/>
+                                    <segue destination="bVf-dI-5Jw" kind="modal" identifier="loginSegue" id="SZL-EC-bU3"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -758,11 +759,12 @@
             </objects>
             <point key="canvasLocation" x="3001" y="-500"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Tweet Navigation Con-->
         <scene sceneID="67d-eI-skw">
             <objects>
-                <navigationController storyboardIdentifier="TweetNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bVf-dI-5Jw" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TweetNavigationController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bVf-dI-5Jw" customClass="TweetNavigationCon" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="5KV-ir-wSj"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eNH-Oi-CXq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -783,6 +785,6 @@
         <image name="retweet-action_default" width="75" height="72"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MLl-5s-zLL"/>
+        <segue reference="RmN-UT-uL6"/>
     </inferredMetricsTieBreakers>
 </document>

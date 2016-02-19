@@ -12,6 +12,8 @@ class TweetViewController: UIViewController {
     var tweets: [Tweet]?
     var index: Int?
     var user_id: String!
+    var rtCount: Int?
+    var favCount: Int?
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var handleLabel: UILabel!
@@ -28,11 +30,14 @@ class TweetViewController: UIViewController {
 
         let tweet = tweets![index!]
         
+        rtCount = Int(tweet.retweetCount!)
+        favCount = Int(tweet.favoriteCount!)
+        
         usernameLabel.text = (tweet.user?.name)!
         handleLabel.text = "@\((tweet.user?.screenname)!)"
         tweetLabel.text = tweet.text
-        retweetLabel.text = tweet.retweetCount
-        favoritesLabel.text = tweet.favoriteCount
+        retweetLabel.text = "\(rtCount!)"
+        favoritesLabel.text = "\(favCount)"
         user_id = tweet.user?.user_id
         
         let imageUrl = tweet.user?.profileImageUrl!
@@ -50,15 +55,22 @@ class TweetViewController: UIViewController {
     
     @IBAction func favorite(sender: AnyObject) {
         print("another fav")
+        
         TwitterClient.sharedInstance.favorite(user_id)
         favButton.setImage(UIImage(named: "like-action-on-red"), forState: UIControlState.Normal)
         
+        favCount = favCount! + 1
+        favoritesLabel.text = "\(favCount!)"
     }
     
     @IBAction func retweet(sender: AnyObject) {
         print("another rt")
+        
         TwitterClient.sharedInstance.retweet(user_id)
         retweetButton.setImage(UIImage(named: "retweet-action-on-green"), forState: UIControlState.Normal)
+        
+        rtCount = rtCount! + 1
+        retweetLabel.text = "\(rtCount!)"        
     }
     
     // MARK: - Navigation
