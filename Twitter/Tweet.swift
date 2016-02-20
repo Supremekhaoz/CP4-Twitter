@@ -15,6 +15,7 @@ class Tweet: NSObject {
     var createdAtString: String?
     var createdAt: NSDate?
     var screenname: String?
+    
     var retweetCount: String?
     var favoriteCount: String?
 
@@ -24,6 +25,7 @@ class Tweet: NSObject {
         text = dictionary["text"] as? String
         createdAtString = dictionary["created_at"] as? String
         screenname = dictionary["screenname"] as? String
+        
         retweetCount = "\((dictionary["retweet_count"])!)"
         favoriteCount = "\(dictionary["favorites_count"])"
         

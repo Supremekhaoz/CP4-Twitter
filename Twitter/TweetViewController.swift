@@ -11,6 +11,7 @@ import UIKit
 class TweetViewController: UIViewController {
     var tweets: [Tweet]?
     var index: Int?
+    var tweetId: String!
     var user_id: String!
     var rtCount: Int?
     var favCount: Int?
@@ -38,7 +39,9 @@ class TweetViewController: UIViewController {
         tweetLabel.text = tweet.text
         retweetLabel.text = "\(rtCount!)"
         favoritesLabel.text = "\(favCount)"
+        
         user_id = tweet.user?.user_id
+        tweetId = tweet.tweetId
         
         let imageUrl = tweet.user?.profileImageUrl!
         avatarView.setImageWithURL(NSURL(string: imageUrl!)!)
@@ -54,19 +57,15 @@ class TweetViewController: UIViewController {
     }
     
     @IBAction func favorite(sender: AnyObject) {
-        print("another fav")
-        
-        TwitterClient.sharedInstance.favorite(user_id)
+        TwitterClient.sharedInstance.favorite(tweetId)
         favButton.setImage(UIImage(named: "like-action-on-red"), forState: UIControlState.Normal)
         
-        favCount = favCount! + 1
-        favoritesLabel.text = "\(favCount!)"
+        //favCount = favCount! + 1
+        //favoritesLabel.text = "\(favCount!)"
     }
     
     @IBAction func retweet(sender: AnyObject) {
-        print("another rt")
-        
-        TwitterClient.sharedInstance.retweet(user_id)
+        TwitterClient.sharedInstance.retweet(tweetId)
         retweetButton.setImage(UIImage(named: "retweet-action-on-green"), forState: UIControlState.Normal)
         
         rtCount = rtCount! + 1

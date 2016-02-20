@@ -41,21 +41,30 @@ class TwitterClient: BDBOAuth1SessionManager {
         GET("1.1/statuses/home_timeline.json", parameters: params,
             success: { (operation: NSURLSessionDataTask?, response: AnyObject?) -> Void in
                 var tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
-                /*for tweet in tweets {
-                    print("tweet: \(tweet.tweet_id!)")
-                }*/
+                for tweet in tweets {
+                    print("tweet: \(tweet.favoriteCount)")
+                }
                 completion(tweet: tweets, error: nil)
             },
             
             failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
-                print("Failed to get the infomation")
+                print("Error retrieving info: \(error)")
                 
                 completion(tweet: nil, error: error)
-                
                 self.loginCompletion!(user: nil, error: error)
         })
         
     }
+    
+    func reply(id: String) {
+        POST("1.1/statuses/retweet/\(id).json", parameters: nil,
+            success: {(operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
+                print ("rt")
+            }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+                print("RT error: \(error)")
+        })
+    }
+    
     func favorite(id: String) {
         POST("1.1/favorites/create.json?id=\(id)", parameters: nil,
             success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
@@ -64,7 +73,7 @@ class TwitterClient: BDBOAuth1SessionManager {
                 print("Fav error: \(error)")
         }
     }
-
+    
     func retweet(id: String) {
         POST("1.1/statuses/retweet/\(id).json", parameters: nil,
             success: {(operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
@@ -72,8 +81,6 @@ class TwitterClient: BDBOAuth1SessionManager {
             }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
                 print("RT error: \(error)")
         })
-
-        
     }
     
     func openURL(url: NSURL) {

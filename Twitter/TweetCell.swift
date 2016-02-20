@@ -50,7 +50,6 @@ class TweetCell: UITableViewCell {
         super.awakeFromNib()
         
         profileImageView.userInteractionEnabled = true
-    
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
