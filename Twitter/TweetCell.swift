@@ -23,7 +23,7 @@ class TweetCell: UITableViewCell {
     
     @IBOutlet weak var profileImageButton: UIButton!
     
-    var user_id: String!
+    var tweet_id: String!
     var rtCount: Int?
     var favCount: Int?
     
@@ -64,7 +64,7 @@ class TweetCell: UITableViewCell {
     }
     
     @IBAction func retweet(sender: AnyObject) {
-        TwitterClient.sharedInstance.retweet(user_id)
+        TwitterClient.sharedInstance.retweet(tweet_id)
         retweetButton.setImage(UIImage(named: "retweet-action-on-green"), forState: UIControlState.Normal)
         
         rtCount = rtCount! + 1
@@ -72,11 +72,11 @@ class TweetCell: UITableViewCell {
     }
     
     @IBAction func favorite(sender: AnyObject) {
-        TwitterClient.sharedInstance.favorite(user_id)
+        TwitterClient.sharedInstance.favorite(tweet_id)
         favButton.setImage(UIImage(named: "like-action-on-red"), forState: UIControlState.Normal)
 
-        favCount = favCount! + 1
-        favoriteLabel.text = "\(favCount!)"
+//        favCount = favCount! + 1
+       // favoriteLabel.text = "\(favCount!)"
 
     }
     

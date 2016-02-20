@@ -56,9 +56,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
         
     }
-    
     func favorite(id: String) {
-        
         POST("1.1/favorites/create.json?id=\(id)", parameters: nil,
             success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
                 print("successful fav")

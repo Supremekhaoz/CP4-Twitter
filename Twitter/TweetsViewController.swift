@@ -76,7 +76,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         
         cell.tweet = tweets![indexPath.row]
-        cell.user_id = cell.tweet.user?.user_id
+        cell.tweet_id = cell.tweet.tweetId
         cell.tweetLabel.sizeToFit()
         
         return cell
