@@ -87,6 +87,17 @@ class TweetViewController: UIViewController {
             composeController.replyTo = replyHandle
             composeController.isReply = true
         }
+        
+        if segue.identifier == "profileSegue" {
+            let profileController = segue.destinationViewController as! ProfileViewController
+            
+            let tweet = tweets![index!]
+            let replyHandle  = "@\((tweet.user?.screenname!)!) " as String
+            
+            profileController.screenname = replyHandle
+            profileController.tweets = tweets
+            profileController.index = index
+        }
     }
     
 
