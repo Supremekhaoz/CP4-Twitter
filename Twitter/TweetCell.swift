@@ -27,8 +27,6 @@ class TweetCell: UITableViewCell {
     var rtCount: Int?
     var favCount: Int?
     
-    
-    
     var tweet: Tweet! {
         didSet {
             rtCount = Int(tweet.retweetCount!)
@@ -39,7 +37,7 @@ class TweetCell: UITableViewCell {
             handleLabel.text = "@\((tweet.user?.screenname)!)"
             timestampLabel.text = "\(tweet.createdAt!)"
             retweetLabel.text = "\(rtCount!)"
-            favoriteLabel.text = "\(favCount)"
+            favoriteLabel.text = "\(favCount!)"
             
             let imageUrl = tweet.user?.profileImageUrl!
             profileImageView.setImageWithURL(NSURL(string: imageUrl!)!)
@@ -64,7 +62,7 @@ class TweetCell: UITableViewCell {
     
     @IBAction func retweet(sender: AnyObject) {
         TwitterClient.sharedInstance.retweet(tweet_id)
-        retweetButton.setImage(UIImage(named: "retweet-action-on-green"), forState: UIControlState.Normal)
+        //retweetButton.setImage(UIImage(named: "retweet-action-on-green"), forState: UIControlState.Normal)
         
         rtCount = rtCount! + 1
         retweetLabel.text = "\(rtCount!)"
@@ -72,10 +70,10 @@ class TweetCell: UITableViewCell {
     
     @IBAction func favorite(sender: AnyObject) {
         TwitterClient.sharedInstance.favorite(tweet_id)
-        favButton.setImage(UIImage(named: "like-action-on-red"), forState: UIControlState.Normal)
+        //favButton.setImage(UIImage(named: "like-action-on-red"), forState: UIControlState.Normal)
 
-//        favCount = favCount! + 1
-       // favoriteLabel.text = "\(favCount!)"
+        favCount = favCount! + 1
+        favoriteLabel.text = "\(favCount!)"
 
     }
     

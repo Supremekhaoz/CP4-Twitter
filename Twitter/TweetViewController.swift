@@ -38,7 +38,7 @@ class TweetViewController: UIViewController {
         handleLabel.text = "@\((tweet.user?.screenname)!)"
         tweetLabel.text = tweet.text
         retweetLabel.text = "\(rtCount!)"
-        favoritesLabel.text = "\(favCount)"
+        favoritesLabel.text = "\(favCount!)"
         
         user_id = tweet.user?.user_id
         tweetId = tweet.tweetId
@@ -60,8 +60,8 @@ class TweetViewController: UIViewController {
         TwitterClient.sharedInstance.favorite(tweetId)
         favButton.setImage(UIImage(named: "like-action-on-red"), forState: UIControlState.Normal)
         
-        //favCount = favCount! + 1
-        //favoritesLabel.text = "\(favCount!)"
+        favCount = favCount! + 1
+        favoritesLabel.text = "\(favCount!)"
     }
     
     @IBAction func retweet(sender: AnyObject) {
@@ -76,8 +76,17 @@ class TweetViewController: UIViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "replyTweetSegue" {
+            print("started replying")
+            let composeController = segue.destinationViewController as! ComposeViewController
+
+            let tweet = tweets![index!]
+            let replyHandle  = "@\((tweet.user?.screenname!)!) " as String
+                
+            composeController.tweetId = tweetId
+            composeController.replyTo = replyHandle
+            composeController.isReply = true
+        }
     }
     
 

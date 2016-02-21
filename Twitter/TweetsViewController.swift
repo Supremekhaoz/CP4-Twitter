@@ -11,8 +11,6 @@ import UIKit
 class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var tweets: [Tweet]?
-    var retweets: [Retweet]?
-    var favorites: [Favorite]?
     
     var refreshControl: UIRefreshControl!
     
@@ -91,8 +89,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 
                 let tweetController = segue.destinationViewController as! TweetViewController
                 
-
-                let selectedRow = (self.tableView.indexPathForSelectedRow?.row)! as NSInteger
+                let selectedRow = indexPath.row as NSInteger
                 
                 tweetController.tweets = tweets
                 tweetController.index = selectedRow
@@ -101,13 +98,35 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             }
         }
         
-        if segue.identifier == "composeSegue" {
-            let composeController = segue.destinationViewController as! ComposeViewController
-            
-            composeController.username = (User.currentUser?.name)!
-            composeController.screenname = (User.currentUser?.screenname)!
-            composeController.url = (User.currentUser?.profileImageUrl)!
-            
+        if segue.identifier == "profileSegue" {
+            let button = sender as! UIButton
+            let buttonFrame = button.convertRect(button.bounds, toView: self.tableView) 
+            if let indexPath = self.tableView.indexPathForRowAtPoint(buttonFrame.origin) {
+                let profileController = segue.destinationViewController as! ProfileViewController
+                
+                let selectedRow = indexPath.row as NSInteger
+                
+                profileController.tweets = tweets
+                profileController.index = selectedRow
+            }
+        }
+        
+        if segue.identifier == "replySegue" {
+            print("started replying")
+            let button = sender as! UIButton
+            let buttonFrame = button.convertRect(button.bounds, toView: self.tableView)
+            if let indexPath = self.tableView.indexPathForRowAtPoint(buttonFrame.origin) {
+                let composeController = segue.destinationViewController as! ComposeViewController
+                
+                let selectedRow = indexPath.row as NSInteger
+                
+                let tweet = tweets![selectedRow]
+                let replyHandle  = "@\((tweet.user?.screenname!)!) " as String
+                
+                composeController.tweetId = (tweet.tweetId!)
+                composeController.replyTo = replyHandle
+                composeController.isReply = true
+            }
         }
     }
 

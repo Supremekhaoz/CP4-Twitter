@@ -12,6 +12,11 @@ class ComposeViewController: UIViewController {
     var username: String?
     var screenname: String?
     var url: String?
+    var tweets: [Tweet]?
+    var row: Int?
+    var tweetId: String = ""
+    var isReply: Bool?
+    var replyTo: String = "" 
     
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var handleLabel: UILabel!
@@ -22,11 +27,12 @@ class ComposeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        usernameLabel.text = username
-        handleLabel.text = screenname
+        usernameLabel.text = (User.currentUser?.name)!
+        handleLabel.text = (User.currentUser?.screenname)!
+        textView.text = replyTo
         
-        let imageUrl = url
-        profileImageView.setImageWithURL(NSURL(string: imageUrl!)!)
+        let imageUrl = (User.currentUser?.profileImageUrl)!
+        profileImageView.setImageWithURL(NSURL(string: imageUrl)!)
         textView.becomeFirstResponder()
     }
 
@@ -40,7 +46,12 @@ class ComposeViewController: UIViewController {
     }
 
     @IBAction func onTweet(sender: AnyObject) {
-        
+        if isReply == true {
+            TwitterClient.sharedInstance.reply(tweetId, tweetText: "\(textView.text)")
+        } else {
+            TwitterClient.sharedInstance.tweet(textView.text)
+        }
+        dismissViewControllerAnimated(true, completion: nil)
     }
     /*
     // MARK: - Navigation
