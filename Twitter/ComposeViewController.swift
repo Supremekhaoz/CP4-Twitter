@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ComposeViewController: UIViewController {
+class ComposeViewController: UIViewController, UITextViewDelegate{
     var username: String?
     var screenname: String?
     var url: String?
@@ -23,9 +23,12 @@ class ComposeViewController: UIViewController {
     @IBOutlet weak var chatCountLabel: UILabel!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var charCount: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        textView.delegate = self
         
         usernameLabel.text = (User.currentUser?.name)!
         handleLabel.text = (User.currentUser?.screenname)!
@@ -34,6 +37,7 @@ class ComposeViewController: UIViewController {
         let imageUrl = (User.currentUser?.profileImageUrl)!
         profileImageView.setImageWithURL(NSURL(string: imageUrl)!)
         textView.becomeFirstResponder()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,6 +45,15 @@ class ComposeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func textViewDidChange(textView: UITextView) {
+        let count = textView.text.characters.count
+        charCount.text = "\(140-count)"
+        if (140-count) < 0 {
+            charCount.textColor = UIColor.redColor()
+        } else {
+            charCount.textColor = UIColor.grayColor()
+        }
+    }
     @IBAction func onCancel(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }

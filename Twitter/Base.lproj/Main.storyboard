@@ -605,6 +605,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="d66-xr-bOh"/>
                     <connections>
+                        <outlet property="charCount" destination="Xyx-2c-mum" id="o2x-iq-Ko8"/>
                         <outlet property="chatCountLabel" destination="Xyx-2c-mum" id="1sr-9N-Y0N"/>
                         <outlet property="handleLabel" destination="CJg-gc-CnO" id="ITk-AZ-ChB"/>
                         <outlet property="profileImageView" destination="Fxl-oZ-yAT" id="Je1-za-MZK"/>
